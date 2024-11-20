@@ -33,7 +33,7 @@ packaging==23.0
 prettytable==3.6.0
 pycodestyle==2.10.0
 pycryptodome==3.17
-pygments=2.18.0
+pygments==2.18.0
 PyJWT==2.3.0
 pysha3==1.0.2
 PyYAML==6.0
