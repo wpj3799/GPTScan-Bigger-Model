@@ -1,0 +1,26 @@
+import logging
+import datetime
+
+# OpenAI API configuration
+OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"  # Replace with your actual OpenAI API key
+MODEL = "gpt-4"  # Specify the model parameter for GPT's API (e.g., gpt-3.5-turbo, gpt-4, etc.)
+
+# Optional configuration for other services or tokens
+GITHUB_TOKEN = "NOT NEEDED"
+
+# Logging configuration
+LOGGING_LEVEL = logging.INFO
+LOGGING_FORMAT = "%(name)s: %(message)s"
+# LOGGING_TARGET = datetime.datetime.now().strftime("logs/main.py-output-%Y%m%d-%H%M%S.log")
+
+# File handling configuration
+STATEMENT_FILE = "output/statements.csv"
+WRITE_STATEMENTS_INTO_FILE = True
+BACKUP_STATEMENTS = True
+
+# Feature toggles
+ENABLE_STATIC_ANALYSIS = True
+
+# Pricing (for internal cost tracking or reference)
+SEND_PRICE = 0.0015 / 1000
+RECEIVE_PRICE = 0.002 / 1000

@@ -18,6 +18,7 @@ from rich.progress import Progress
 from rich.table import Table
 from rich_utils import *
 import falcon
+from config import OUTPUT_FILE
 
 logger = logging.getLogger(__name__)
 
@@ -107,9 +108,8 @@ def simple_cli():
     parser.add_argument("-s", "--source", help="The source code directory", required=True)
     # not need ast, compile first
     # parser.add_argument("-a", "--ast", help="The AST directory", required=True)
-    parser.add_argument("-o", "--output", help="The output file", required=True)
-    parser.add_argument("-k", "--gptkey", help="The OpenAI API key", required=True)
-    
+    # parser.add_argument("-o", "--output", help="The output file", required=True)
+    # parser.add_argument("-k", "--gptkey", help="The OpenAI API key", required=True)
     
     scan_rules = load_all_rules()
     console.log(f"Loaded [bold green]{len(scan_rules)}[/bold green] rules")
@@ -122,10 +122,10 @@ def simple_cli():
         console.log(traceback.format_exc())
         console.log("Compile [bold red]failed[/bold red].")
         console.log("[yellow]Since the compilation is failed, some static analysis tool may not be enabled, which may cause lower precision and recall.[/yellow]")
-    output_file = parser.parse_args().output
-    gptkey = parser.parse_args().gptkey
+    # output_file = parser.parse_args().output
+    # gptkey = parser.parse_args().gptkey
 
-    os.environ["OPENAI_API_KEY"] = gptkey
+    # os.environ["OPENAI_API_KEY"] = gptkey
 
     import analyze_pipeline
     import chatgpt_api
@@ -359,9 +359,7 @@ def simple_cli():
 
     meta_data["token_sent"] = chatgpt_api.tokens_sent.value # 发送的Token数量
     meta_data["token_received"] = chatgpt_api.tokens_received.value # 接收的Token数量
-    meta_data["token_sent_gpt4"] = chatgpt_api.tokens_sent_gpt4.value # 发送的Token数量
-    meta_data["token_received_gpt4"] = chatgpt_api.tokens_received_gpt4.value # 接收的Token数量
-    meta_data["estimated_cost"] = (meta_data["token_sent"] * global_config.SEND_PRICE) + (meta_data["token_received"] * global_config.RECEIVE_PRICE) + (meta_data["token_sent_gpt4"] * global_config.GPT4_SEND_PRICE) + (meta_data["token_received_gpt4"] * global_config.GPT4_RECEIVE_PRICE)# 预估的花费
+    meta_data["estimated_cost"] = (meta_data["token_sent"] * global_config.SEND_PRICE) + (meta_data["token_received"] * global_config.RECEIVE_PRICE)
 
     for metadata_key, metadata_value in meta_data.copy().items():
         if isinstance(metadata_value, set):
@@ -383,5 +381,5 @@ def simple_cli():
     console.print(summary_table)
 
 
-    json.dump(output_json, open(output_file, "w"), indent=4)
-    json.dump(meta_data, open(output_file+".metadata.json", "w"), indent=4)
+    json.dump(output_json, open(OUTPUT_FILE+".json", "w"), indent=4)
+    json.dump(meta_data, open(OUTPUT_FILE+".metadata.json", "w"), indent=4)
