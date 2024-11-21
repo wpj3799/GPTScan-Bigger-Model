@@ -18,12 +18,12 @@ import rich_utils
 logger = logging.getLogger(__name__)
 console = rich.get_console()
 
-def ask_with_timeout(prompt, gpt4=False, timeout=90):
+def ask_with_timeout(prompt, timeout=90):
     # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     # logger.info(f"Sending message: \n{prompt}")
     # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     pool = multiprocessing.Pool(processes=1)
-    process = pool.apply_async(Chat().sendMessages, args=(prompt, gpt4))
+    process = pool.apply_async(Chat().sendMessages, args=(prompt))
     pool.close()
     start_time = time.time()
     while True:
