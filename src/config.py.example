@@ -4,7 +4,6 @@ import datetime
 # OpenAI API configuration
 OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"  # Replace with your actual OpenAI API key
 MODEL = "gpt-4"  # Specify the model parameter for GPT's API (e.g., gpt-3.5-turbo, gpt-4, etc.)
-OUTPUT_FILE = "./sourcecode/output"
 
 # Optional configuration for other services or tokens
 GITHUB_TOKEN = "NOT NEEDED"
