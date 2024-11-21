@@ -18,7 +18,7 @@ from rich.progress import Progress
 from rich.table import Table
 from rich_utils import *
 import falcon
-from config import OUTPUT_FILE, OPENAI_API_KEY
+from config import OPENAI_API_KEY
 import openai
 
 openai.api_key = OPENAI_API_KEY
@@ -117,7 +117,7 @@ def simple_cli():
     scan_rules = load_all_rules()
     console.log(f"Loaded [bold green]{len(scan_rules)}[/bold green] rules")
     
-    source_dir = parser.parse_args().source
+    source_dir, output_file = parser.parse_args().source, parser.parse_args().source
 
     try:
         falcon_instance = compile_project(source_dir)
@@ -384,5 +384,5 @@ def simple_cli():
     console.print(summary_table)
 
 
-    json.dump(output_json, open(OUTPUT_FILE+".json", "w"), indent=4)
-    json.dump(meta_data, open(OUTPUT_FILE+".metadata.json", "w"), indent=4)
+    json.dump(output_json, open(output_file+"/gptscan_output.json", "w"), indent=4)
+    json.dump(meta_data, open(output_file+"/gptscan_output.metadata.json", "w"), indent=4)
