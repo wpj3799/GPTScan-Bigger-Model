@@ -21,7 +21,8 @@ Update `src/config.py` with the:
 - GPT_API_KEY
 - GPT_Model_Version
 
-Move Solidity files to a usable directory following the directory structure provided by MetaTrustLabs/GPTScan-Top200 where each .sol file is in its own folder within the SOURCECODE_DIRECTORY. i.e /data/0x000000/test.sol where /data is the SOURCECODE_DIRECTORY
+Move Solidity files to a usable directory following the directory structure provided by MetaTrustLabs/GPTScan-Top200 where each .sol file is in its own folder within the SOURCECODE_DIRECTORY. i.e /data/0x000000/test.sol where /data is SOURCECODE_DIRECTORY.
+NOTE: First run may be slow due to hardhat configuration and Solidity compilation.
 
 ```shell
 ./run_gptscan.sh /SOURCECODE_DIRECTORY
@@ -29,7 +30,10 @@ Move Solidity files to a usable directory following the directory structure prov
 
 3. Check the output
 
-The output results are located in each file’s directory `/data/0x000000/output.json` & `/data/0x000000/stdout.txt`.
+The output results are located in each file’s directory:
+- Analysis output: `/data/0x000000/gptscan_output.json`
+- Metadata output: `/data/0x000000/gptscan_output.metadata.json`
+- GPTScan stdout: `/data/0x000000/gptscan_results.md`.
 
 ## Supported Project Types
 
