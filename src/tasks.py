@@ -18,7 +18,10 @@ from rich.progress import Progress
 from rich.table import Table
 from rich_utils import *
 import falcon
-from config import OUTPUT_FILE
+from config import OUTPUT_FILE, OPENAI_API_KEY
+import openai
+
+openai.api_key = OPENAI_API_KEY
 
 logger = logging.getLogger(__name__)
 

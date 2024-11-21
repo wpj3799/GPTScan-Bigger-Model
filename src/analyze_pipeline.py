@@ -19,23 +19,18 @@ logger = logging.getLogger(__name__)
 console = rich.get_console()
 
 def ask_with_timeout(prompt, timeout=90):
-    # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    # logger.info(f"Sending message: \n{prompt}")
-    # logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     pool = multiprocessing.Pool(processes=1)
-    process = pool.apply_async(Chat().sendMessages, args=(prompt))
+    process = pool.apply_async(Chat().sendMessages, args=(prompt,))
     pool.close()
     start_time = time.time()
     while True:
         if time.time() - start_time > timeout:
             pool.terminate()
             raise TimeoutError("Timeout")
-        if process.ready() == True:
+        if process.ready():
             res = process.get()
-            # logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            # logger.info(f"Received message: \n{res}")
-            # logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             return res
+
 
 
 def ask_for_function_to_focus_with_feature_words_v2(source_dir: str, feature_words: List[List[str]]) -> Tuple[CallGraph, Dict[str, Dict[str, List[int]]]]:
