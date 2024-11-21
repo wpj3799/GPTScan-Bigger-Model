@@ -6,9 +6,6 @@ project-config.json
 
 data/
 
-src/config.py
-src/sourcecode/*
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -154,4 +151,3 @@ experiments
 
 # IDEA
 .idea
-src/config.py
