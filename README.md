@@ -1,4 +1,4 @@
-# GPTScan
+# GPTScan_Bigger_Model
 
 ## Description
 
@@ -8,20 +8,28 @@ Using ChatGPT for logic vulnerability detection.
 
 1. Install dependencies,
 
-- Requires Python 3.10+
+- Usable only in UNIX environment (Tested in Ubuntu 24.0.1 LTS)
+- Requires Python 3.10+ `apt-get install python3`
+- Requires Java 11+ `apt-get install default-jre`
+- Requires Node.js/nvm 0.40+ [https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+- Requires solc 0.8+ `add-apt-repository ppa:ethereum/Ethereum & apt update & apt-get install solc`
 - Install Python dependencies: `pip install -r requirements.txt`
 
-2. Run GPTScan
+2. GPTScan Usage
 
-For example, if the source code is stored in the `/source` directory, run the command:
+Update `src/config.py` with the:
+- GPT_API_KEY
+- GPT_Model_Version
+
+Move Solidity files to a usable directory following the directory structure provided by MetaTrustLabs/GPTScan-Top200 where each .sol file is in its own folder within the SOURCECODE_DIRECTORY. i.e /data/0x000000/test.sol where /data is the SOURCECODE_DIRECTORY
 
 ```shell
-python3.10 main.py -s /sourcecode -o /sourcecode/output.json -k OPEN_AI_API_KEY_xxxxxxxxxxxxx
+./run_gptscan.sh /SOURCECODE_DIRECTORY
 ```
 
 3. Check the output
 
-The output results are located at the location specified by the `-o` parameter, in the example above, it is located at `/sourcecode/output.json`.
+The output results are located in each file’s directory `/data/0x000000/output.json` & `/data/0x000000/stdout.txt`.
 
 ## Supported Project Types
 
@@ -31,11 +39,9 @@ Currently supported project types include:
 - Common framework projects, such as Truffle, Hardhat, Brownie, etc.
 
 Tested frameworks include:
-- Hardhad
+- Hardhat
 - Truffle
 - Brownie
-
-Note that this project does not include the compilation environment, such as Node.js, which needs to be installed separately.
 
 ## Dataset
 
@@ -44,21 +50,8 @@ Dataset used to evaluate GPTScan in the paper, are the following:
 2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks)
 3. Top200: [https://github.com/MetaTrustLabs/GPTScan-Top200](https://github.com/MetaTrustLabs/GPTScan-Top200)
 
-## How to Cite this project
-
-```bibtex
-@inproceedings{sun2024gptscan,
-    author = {Sun, Yuqiang and Wu, Daoyuan and Xue, Yue and Liu, Han and Wang, Haijun and Xu, Zhengzi and Xie, Xiaofei and Liu, Yang},
-    title = {{GPTScan}: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT with Program Analysis},
-    year = {2024},
-    isbn = {9798400702174},
-    publisher = {Association for Computing Machinery},
-    address = {New York, NY, USA},
-    url = {https://doi.org/10.1145/3597503.3639117},
-    doi = {10.1145/3597503.3639117},
-    booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},
-    articleno = {166},
-    numpages = {13},
-    series = {ICSE '24}
-}
-```
+## Credits
+Rochester Institute of Technology
+Golisano College of Computer Science and Information Technology
+Department of Cybersecurity
+CSEC 795 : Advanced Software Security
