@@ -4,6 +4,7 @@ import os
 import logging
 import rich
 from rich.table import Table
+import vulnerability_assessment as va
 
 console = rich.get_console()
 
@@ -213,11 +214,43 @@ def convert_output(origin_output:Dict, scan_rules:List[Dict], cg:CallGraph, base
             res["results"].append(result)
     
     # printing output:
-    table = Table("Type", "Description", "Affected Files",title="Scan Results", show_lines=True)
+    table = Table("Type", "Description", "Affected Files", "Analysis Report", title="Scan Results", show_lines=True)
     for result in res["results"]:
-        afftected_table = Table("File Path", "Line Range", "Code")
+        affected_table = Table("File Path", "Line Range", "Code")
+        analysis_table = Table("Secure Code Examples", "Best Practices", "CVSS Score", "Severity", "Recommendation")
+
         for affectedFile in result["affectedFiles"]:
-            afftected_table.add_row(affectedFile["filePath"], f"{affectedFile['range']['start']['line']} - {affectedFile['range']['end']['line']}", "\n".join(open(affectedFile["filePath"]).readlines()[affectedFile['range']['start']['line']-1:affectedFile['range']['end']['line']]))
-        table.add_row(result["title"].split(":")[1].strip(), result["description"], afftected_table)
+            # Extract the code snippet from the file based on the affected line range
+            with open(affectedFile["filePath"], "r") as file:
+                lines = file.readlines()
+                code_snippet = "\n".join(lines[affectedFile['range']['start']['line']-1:affectedFile['range']['end']['line']])
+
+            # Pass the code snippet to the main function
+            analysis_result = va.main(code_snippet)
+
+            # Add affected file details
+            affected_table.add_row(
+                affectedFile["filePath"],
+                f"{affectedFile['range']['start']['line']} - {affectedFile['range']['end']['line']}",
+                code_snippet
+            )
+
+            # Add analysis report details
+            analysis_table.add_row(
+                analysis_result["secure_code_examples"],
+                analysis_result["best_practices"],
+                str(analysis_result["vulnerability_assessment"]["cvss_score"]),
+                analysis_result["vulnerability_assessment"]["cvss_severity"],
+                analysis_result["vulnerability_assessment"]["recommendation"]
+            )
+
+        # Add the vulnerability result to the main table
+        table.add_row(
+            result["title"].split(":")[1].strip(),
+            result["description"],
+            affected_table,
+            analysis_table
+        )
+
     console.print(table)
     return res

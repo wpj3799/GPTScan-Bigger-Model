@@ -379,7 +379,7 @@ def prompt_related_functions(feature_words:List[str], code:List[str]) -> str:
     return question_template
 
 def prompt_multiple_choice_scenarios(scenarios:List[str], code:str) -> str:
-    question_template="""Given the following smart contract code, answer the questions below and organize the result in a json format like {"""
+    question_template="""Given the following smart contract code, answer the questions below and organize the result strictly in a json format like {"""
     
     for index, scenario in enumerate(scenarios):
         question_template += f'"{index+1}": "Yes" or "No"'
