@@ -19,7 +19,6 @@ SYSTEM_MESSAGE = (
     "Furthermore, please strictly adhere to the output format specified in the question; there is no need to explain your answer."
 )
 
-encoder = tiktoken.get_encoding("cl100k_base")
 encoder = tiktoken.encoding_for_model(MODEL)
 
 tokens_sent = Value("d", 0)
