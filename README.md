@@ -33,7 +33,7 @@ NOTE: First run may be slow due to hardhat configuration and Solidity compilatio
 The output results are located in each file’s directory:
 - Analysis output: `/data/0x000000/gptscan_output.json`
 - Metadata output: `/data/0x000000/gptscan_output.metadata.json`
-- GPTScan stdout: `/data/0x000000/gptscan_results.md`.
+- GPTScan stdout: `/data/0x000000/gptscan_results.md`
 
 ## Supported Project Types
 
@@ -50,8 +50,8 @@ Tested frameworks include:
 ## Dataset
 
 Dataset used to evaluate GPTScan in the paper, are the following:
-1. Web3Bugs: [https://github.com/MetaTrustLabs/GPTScan-Web3Bugs](https://github.com/MetaTrustLabs/GPTScan-Web3Bugs)
-2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks)
+1. Web3Bugs: [https://github.com/MetaTrustLabs/GPTScan-Web3Bugs](https://github.com/MetaTrustLabs/GPTScan-Web3Bugs) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/code-423n4](https://github.com/code-423n4)
+2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/skyonedot/DeFiHackLabs(https://github.com/skyonedot/DeFiHackLabs)
 3. Top200: [https://github.com/MetaTrustLabs/GPTScan-Top200](https://github.com/MetaTrustLabs/GPTScan-Top200)
 
 ## Credits
