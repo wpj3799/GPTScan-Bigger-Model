@@ -1,4 +1,5 @@
 # GPTScan_Bigger_Model
+# Version 2 of the GPTScan project by Sun et al.
 
 ## Description
 
@@ -40,18 +41,13 @@ The output results are located in each file’s directory:
 Currently supported project types include:
 - Single file, i.e., a single `.sol` file
 - Multi-file, i.e., a directory with multiple `.sol` files, without any other external dependencies
-- Common framework projects, such as Truffle, Hardhat, Brownie, etc.
-
-Tested frameworks include:
-- Hardhat
-- Truffle
-- Brownie
+- Hardhat projects
 
 ## Dataset
 
 Dataset used to evaluate GPTScan in the paper, are the following:
 1. Web3Bugs: [https://github.com/MetaTrustLabs/GPTScan-Web3Bugs](https://github.com/MetaTrustLabs/GPTScan-Web3Bugs) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/code-423n4](https://github.com/code-423n4)
-2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/skyonedot/DeFiHackLabs(https://github.com/skyonedot/DeFiHackLabs)
+2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/skyonedot/DeFiHackLabs](https://github.com/skyonedot/DeFiHackLabs)
 3. Top200: [https://github.com/MetaTrustLabs/GPTScan-Top200](https://github.com/MetaTrustLabs/GPTScan-Top200)
 
 ## Credits
