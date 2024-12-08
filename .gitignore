@@ -4,7 +4,8 @@ callgraph.json
 dataflow.json
 project-config.json
 
-*data*/
+*datasets*
+*eval_data*
 
 src/config.py
 src/sourcecode/*
