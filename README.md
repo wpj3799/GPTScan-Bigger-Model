@@ -35,6 +35,7 @@ The output results are located in each file’s directory:
 - Analysis output: `/data/0x000000/gptscan_output.json`
 - Metadata output: `/data/0x000000/gptscan_output.metadata.json`
 - GPTScan stdout: `/data/0x000000/gptscan_results.md`
+An example run of GPTScan on a Smart Contract HardHat project has been provided in the `/example_data_source/` directory. Utilize this output as a reference.
 
 ## Supported Project Types
 
@@ -47,7 +48,7 @@ Currently supported project types include:
 
 Dataset used to evaluate GPTScan in the paper, are the following:
 1. Web3Bugs: [https://github.com/MetaTrustLabs/GPTScan-Web3Bugs](https://github.com/MetaTrustLabs/GPTScan-Web3Bugs) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/code-423n4](https://github.com/code-423n4)
-2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks) For some reason MetaTrustLabs does not include the Solidity files, get them from here [https://github.com/skyonedot/DeFiHackLabs](https://github.com/skyonedot/DeFiHackLabs)
+2. DefiHacks: [https://github.com/MetaTrustLabs/GPTScan-DefiHacks](https://github.com/MetaTrustLabs/GPTScan-DefiHacks) For some reason MetaTrustLabs does not include the Solidity files, get them from here: [https://github.com/SunWeb3Sec/DeFiHackLabs](https://github.com/SunWeb3Sec/DeFiHackLabs) or its fork: [https://github.com/skyonedot/DeFiHackLabs](https://github.com/skyonedot/DeFiHackLabs)
 3. Top200: [https://github.com/MetaTrustLabs/GPTScan-Top200](https://github.com/MetaTrustLabs/GPTScan-Top200)
 
 ## Credits
