@@ -31,11 +31,12 @@ NOTE: First run may be slow due to hardhat configuration and Solidity compilatio
 
 3. Check the output
 
-The output results are located in each file’s directory:
+The output results are located in each file’s directory:<br />
+An example run of GPTScan on a Smart Contract HardHat project has been provided in the `/example_data_source/` directory. Utilize this output as a reference.<br />
 - Analysis output: `/data/0x000000/gptscan_output.json`
 - Metadata output: `/data/0x000000/gptscan_output.metadata.json`
 - GPTScan stdout: `/data/0x000000/gptscan_results.md`
-An example run of GPTScan on a Smart Contract HardHat project has been provided in the `/example_data_source/` directory. Utilize this output as a reference.
+
 
 ## Supported Project Types
 
