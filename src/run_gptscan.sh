@@ -9,6 +9,10 @@ fi
 # Use the provided directory parameter
 test_directory="$1"
 main_script_path="main.py"
+results_dir="/home/owen/Documents/GitHub/GPTScan-Bigger-Model/results/gpt-3.5-turbo/GPTScan-Top200-dev"
+
+# Ensure the results directory exists
+mkdir -p "$results_dir"
 
 # Run setup script with the provided directory
 ./setup_contracts.sh "$test_directory"
@@ -17,8 +21,11 @@ main_script_path="main.py"
 for dir_path in "$test_directory"/*; do
     # Ensure it's a directory
     if [[ -d "$dir_path" ]]; then
+        # Extract the name of the current directory
+        dir_name=$(basename "$dir_path")
+
         # Define the output file path
-        output_file="$dir_path/gptscan_results.md"
+        output_file="$results_dir/${dir_name}_results.md"
 
         # Construct and execute the command, redirecting output to the file
         echo "Running command: python3 $main_script_path -s $dir_path"
