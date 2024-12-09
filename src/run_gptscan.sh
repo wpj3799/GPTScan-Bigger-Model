@@ -9,10 +9,6 @@ fi
 # Use the provided directory parameter
 test_directory="$1"
 main_script_path="main.py"
-results_dir="/home/owen/Documents/GitHub/GPTScan-Bigger-Model/results/gpt-3.5-turbo/code-423n4-Web3Bugs-data"
-
-# Ensure the results directory exists
-mkdir -p "$results_dir"
 
 # Run setup script with the provided directory
 ./setup_contracts.sh "$test_directory"
@@ -25,7 +21,7 @@ for dir_path in "$test_directory"/*; do
         dir_name=$(basename "$dir_path")
 
         # Define the output file path
-        output_file="$results_dir/${dir_name}_results.md"
+        output_file="$dir_path/${dir_name}_results.md"
 
         # Construct and execute the command, redirecting output to the file
         echo "Running command: python3 $main_script_path -s $dir_path"
