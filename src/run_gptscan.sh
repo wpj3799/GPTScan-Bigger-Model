@@ -9,7 +9,7 @@ fi
 # Use the provided directory parameter
 test_directory="$1"
 main_script_path="main.py"
-results_dir="/home/owen/Documents/GitHub/GPTScan-Bigger-Model/results/gpt-3.5-turbo/GPTScan-Top200-dev"
+results_dir="/home/owen/Documents/GitHub/GPTScan-Bigger-Model/results/gpt-3.5-turbo/code-423n4-Web3Bugs-data"
 
 # Ensure the results directory exists
 mkdir -p "$results_dir"

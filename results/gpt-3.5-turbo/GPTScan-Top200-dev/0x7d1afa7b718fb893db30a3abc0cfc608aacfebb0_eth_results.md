@@ -1,0 +1,97 @@
+
+
+  .oooooo.    ooooooooo.   ooooooooooooo  .oooooo..o                                 
+ d8P'  `Y8b   `888   `Y88. 8'   888   `8 d8P'    `Y8                                 
+888            888   .d88'      888      Y88bo.       .ooooo.   .oooo.   ooo. .oo.   
+888            888ooo88P'       888       `"Y8888o.  d88' `"Y8 `P  )88b  `888P"Y88b  
+888     ooooo  888              888           `"Y88b 888        .oP"888   888   888  
+`88.    .88'   888              888      oo     .d8P 888   .o8 d8(  888   888   888  
+ `Y8bood8P'   o888o            o888o     8""88888P'  `Y8bod8P' `Y888""8o o888o o888o                                                        
+
+
+                                                                   
+
+[18:25:45] Loaded 10 rules                                                                                                                                                                             tasks.py:119
+[12/08/24 18:25:45] INFO     CryticCompile: 'npx hardhat clean' running (wd: /home/owen/Documents/GitHub/GPTScan-Bigger-Model/eval_data/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0_eth)            subprocess.py:41
+[12/08/24 18:25:47] INFO     CryticCompile: 'npx hardhat clean --global' running (wd: /home/owen/Documents/GitHub/GPTScan-Bigger-Model/eval_data/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0_eth)   subprocess.py:41
+[12/08/24 18:25:50] INFO     CryticCompile: 'npx hardhat compile --force' running (wd: /home/owen/Documents/GitHub/GPTScan-Bigger-Model/eval_data/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0_eth)  subprocess.py:41
+[12/08/24 18:25:53] INFO     antlr4helper.callgraph: In whitelist: SafeMath.sub(uint,uint) returns(uint)                                                                                            callgraph.py:21
+                    INFO     antlr4helper.callgraph: In whitelist: SafeMath.add(uint,uint) returns(uint)                                                                                            callgraph.py:21
+                    INFO     antlr4helper.callgraph: In whitelist: ERC20.approve(address,uint) returns(bool)                                                                                        callgraph.py:21
+                    INFO     antlr4helper.callgraph: In whitelist: ERC20.transferFrom(address,address,uint) returns(bool)                                                                           callgraph.py:21
+                    INFO     antlr4helper.callgraph: In whitelist: ERC20.increaseAllowance(address,uint) returns(bool)                                                                              callgraph.py:21
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function _mint(address account, uint256 value) internal {                                                                                                                                                   │
+│         require(account != address(0));                                                                                                                                                                         │
+│                                                                                                                                                                                                                 │
+│         _totalSupply = _totalSupply.add(value);                                                                                                                                                                 │
+│         _balances = _balances.add(value);                                                                                                                                                                       │
+│         emit Transfer(address(0), account, value);                                                                                                                                                              │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function _burn(address account, uint256 value) internal {                                                                                                                                                   │
+│         require(account != address(0));                                                                                                                                                                         │
+│                                                                                                                                                                                                                 │
+│         _totalSupply = _totalSupply.sub(value);                                                                                                                                                                 │
+│         _balances = _balances.sub(value);                                                                                                                                                                       │
+│         emit Transfer(account, address(0), value);                                                                                                                                                              │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function _burnFrom(address account, uint256 value) internal {                                                                                                                                               │
+│         _allowed = _allowed.sub(value);                                                                                                                                                                         │
+│         _burn(account, value);                                                                                                                                                                                  │
+│         emit Approval(account, msg.sender, _allowed);                                                                                                                                                           │
+│     }                                                                                                                                                                                                           │
+│     function _burn(address account, uint256 value) internal {                                                                                                                                                   │
+│         require(account != address(0));                                                                                                                                                                         │
+│                                                                                                                                                                                                                 │
+│         _totalSupply = _totalSupply.sub(value);                                                                                                                                                                 │
+│         _balances = _balances.sub(value);                                                                                                                                                                       │
+│         emit Transfer(account, address(0), value);                                                                                                                                                              │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                      Scan Results                       
+┏━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Type ┃ Description ┃ Affected Files ┃ Analysis Report ┃
+┡━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+└──────┴─────────────┴────────────────┴─────────────────┘
+                  Summary                   
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+┃ Key                  ┃ Value             ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+│ Files                │ 1                 │
+│ Contracts            │ 9                 │
+│ Functions            │ 9                 │
+│ Lines of Code        │ 494               │
+│ Used Time            │ 9.292802810668945 │
+│ Estimated Cost (USD) │ 0.001086          │
+└──────────────────────┴───────────────────┘

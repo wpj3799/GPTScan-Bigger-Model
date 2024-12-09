@@ -1,0 +1,369 @@
+
+
+  .oooooo.    ooooooooo.   ooooooooooooo  .oooooo..o                                 
+ d8P'  `Y8b   `888   `Y88. 8'   888   `8 d8P'    `Y8                                 
+888            888   .d88'      888      Y88bo.       .ooooo.   .oooo.   ooo. .oo.   
+888            888ooo88P'       888       `"Y8888o.  d88' `"Y8 `P  )88b  `888P"Y88b  
+888     ooooo  888              888           `"Y88b 888        .oP"888   888   888  
+`88.    .88'   888              888      oo     .d8P 888   .o8 d8(  888   888   888  
+ `Y8bood8P'   o888o            o888o     8""88888P'  `Y8bod8P' `Y888""8o o888o o888o                                                        
+
+
+                                                                   
+
+[19:10:45] Loaded 10 rules                                                                                                                                                                             tasks.py:119
+[12/08/24 19:10:45] INFO     CryticCompile: 'npx hardhat clean' running (wd: /home/owen/Documents/GitHub/GPTScan-Bigger-Model/datasets/code-423n4-Web3Bugs-data/2021-10-defiprotocol-main)         subprocess.py:41
+[12/08/24 19:10:46] INFO     CryticCompile: 'npx hardhat clean --global' running (wd:                                                                                                              subprocess.py:41
+                             /home/owen/Documents/GitHub/GPTScan-Bigger-Model/datasets/code-423n4-Web3Bugs-data/2021-10-defiprotocol-main)                                                                         
+[12/08/24 19:10:50] INFO     CryticCompile: 'npx hardhat compile --force' running (wd:                                                                                                             subprocess.py:41
+                             /home/owen/Documents/GitHub/GPTScan-Bigger-Model/datasets/code-423n4-Web3Bugs-data/2021-10-defiprotocol-main)                                                                         
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function bondForRebalance() public override {                                                                                                                                                               │
+│         require(auctionOngoing);                                                                                                                                                                                │
+│         require(!hasBonded);                                                                                                                                                                                    │
+│                                                                                                                                                                                                                 │
+│         bondBlock = block.number;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│         IERC20 basketToken = IERC20(address(basket));                                                                                                                                                           │
+│         bondAmount = basketToken.totalSupply() / factory.bondPercentDiv();                                                                                                                                      │
+│         basketToken.safeTransferFrom(msg.sender, address(this), bondAmount);                                                                                                                                    │
+│         hasBonded = true;                                                                                                                                                                                       │
+│         auctionBonder = msg.sender;                                                                                                                                                                             │
+│                                                                                                                                                                                                                 │
+│         emit Bonded(msg.sender, bondAmount);                                                                                                                                                                    │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "Yes"                                                                                                                                                                                                  │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────── Single Choice Scenario ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: deposit/mint/add the liquidity pool/amount/share and set the total share to the number of first deposit when the supply/liquidity is 0                                                               │
+│ Code:                                                                                                                                                                                                           │
+│     function bondForRebalance() public override {                                                                                                                                                               │
+│         require(auctionOngoing);                                                                                                                                                                                │
+│         require(!hasBonded);                                                                                                                                                                                    │
+│                                                                                                                                                                                                                 │
+│         bondBlock = block.number;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│         IERC20 basketToken = IERC20(address(basket));                                                                                                                                                           │
+│         bondAmount = basketToken.totalSupply() / factory.bondPercentDiv();                                                                                                                                      │
+│         basketToken.safeTransferFrom(msg.sender, address(this), bondAmount);                                                                                                                                    │
+│         hasBonded = true;                                                                                                                                                                                       │
+│         auctionBonder = msg.sender;                                                                                                                                                                             │
+│                                                                                                                                                                                                                 │
+│         emit Bonded(msg.sender, bondAmount);                                                                                                                                                                    │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ No                                                                                                                                                                                                              │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function settleAuction(                                                                                                                                                                                     │
+│         uint256[] memory bountyIDs,                                                                                                                                                                             │
+│         address[] memory inputTokens,                                                                                                                                                                           │
+│         uint256[] memory inputWeights,                                                                                                                                                                          │
+│         address[] memory outputTokens,                                                                                                                                                                          │
+│         uint256[] memory outputWeights                                                                                                                                                                          │
+│     ) public nonReentrant override {                                                                                                                                                                            │
+│         require(auctionOngoing);                                                                                                                                                                                │
+│         require(hasBonded);                                                                                                                                                                                     │
+│         require(bondBlock + ONE_DAY > block.number);                                                                                                                                                            │
+│         require(msg.sender == auctionBonder);                                                                                                                                                                   │
+│         require(inputTokens.length == inputWeights.length);                                                                                                                                                     │
+│         require(outputTokens.length == outputWeights.length);                                                                                                                                                   │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < inputTokens.length; i++) {                                                                                                                                                      │
+│             IERC20(inputTokens).safeTransferFrom(msg.sender, address(basket), inputWeights);                                                                                                                    │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < outputTokens.length; i++) {                                                                                                                                                     │
+│             IERC20(outputTokens).safeTransferFrom(address(basket), msg.sender, outputWeights);                                                                                                                  │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         //TODO: name a and b or further split up                                                                                                                                                                │
+│         uint256 a = factory.auctionMultiplier() * basket.ibRatio();                                                                                                                                             │
+│         uint256 b = (bondBlock - auctionStart) * BASE / factory.auctionDecrement();                                                                                                                             │
+│         uint256 newRatio = a - b;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│         (address[] memory pendingTokens, uint256[] memory pendingWeights) = basket.getPendingWeights();                                                                                                         │
+│         IERC20 basketAsERC20 = IERC20(address(basket));                                                                                                                                                         │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < pendingWeights.length; i++) {                                                                                                                                                   │
+│             uint256 tokensNeeded = basketAsERC20.totalSupply() * pendingWeights * newRatio / BASE / BASE;                                                                                                       │
+│             require(IERC20(pendingTokens).balanceOf(address(basket)) >= tokensNeeded);                                                                                                                          │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         basket.setNewWeights();                                                                                                                                                                                 │
+│         basket.updateIBRatio(newRatio);                                                                                                                                                                         │
+│         auctionOngoing = false;                                                                                                                                                                                 │
+│         hasBonded = false;                                                                                                                                                                                      │
+│                                                                                                                                                                                                                 │
+│         basketAsERC20.safeTransfer(msg.sender, bondAmount);                                                                                                                                                     │
+│         withdrawBounty(bountyIDs);                                                                                                                                                                              │
+│                                                                                                                                                                                                                 │
+│         emit AuctionSettled(msg.sender);                                                                                                                                                                        │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "Yes"                                                                                                                                                                                                  │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────── Single Choice Scenario ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: deposit/mint/add the liquidity pool/amount/share and set the total share to the number of first deposit when the supply/liquidity is 0                                                               │
+│ Code:                                                                                                                                                                                                           │
+│     function settleAuction(                                                                                                                                                                                     │
+│         uint256[] memory bountyIDs,                                                                                                                                                                             │
+│         address[] memory inputTokens,                                                                                                                                                                           │
+│         uint256[] memory inputWeights,                                                                                                                                                                          │
+│         address[] memory outputTokens,                                                                                                                                                                          │
+│         uint256[] memory outputWeights                                                                                                                                                                          │
+│     ) public nonReentrant override {                                                                                                                                                                            │
+│         require(auctionOngoing);                                                                                                                                                                                │
+│         require(hasBonded);                                                                                                                                                                                     │
+│         require(bondBlock + ONE_DAY > block.number);                                                                                                                                                            │
+│         require(msg.sender == auctionBonder);                                                                                                                                                                   │
+│         require(inputTokens.length == inputWeights.length);                                                                                                                                                     │
+│         require(outputTokens.length == outputWeights.length);                                                                                                                                                   │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < inputTokens.length; i++) {                                                                                                                                                      │
+│             IERC20(inputTokens).safeTransferFrom(msg.sender, address(basket), inputWeights);                                                                                                                    │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < outputTokens.length; i++) {                                                                                                                                                     │
+│             IERC20(outputTokens).safeTransferFrom(address(basket), msg.sender, outputWeights);                                                                                                                  │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         //TODO: name a and b or further split up                                                                                                                                                                │
+│         uint256 a = factory.auctionMultiplier() * basket.ibRatio();                                                                                                                                             │
+│         uint256 b = (bondBlock - auctionStart) * BASE / factory.auctionDecrement();                                                                                                                             │
+│         uint256 newRatio = a - b;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│         (address[] memory pendingTokens, uint256[] memory pendingWeights) = basket.getPendingWeights();                                                                                                         │
+│         IERC20 basketAsERC20 = IERC20(address(basket));                                                                                                                                                         │
+│                                                                                                                                                                                                                 │
+│         for (uint256 i = 0; i < pendingWeights.length; i++) {                                                                                                                                                   │
+│             uint256 tokensNeeded = basketAsERC20.totalSupply() * pendingWeights * newRatio / BASE / BASE;                                                                                                       │
+│             require(IERC20(pendingTokens).balanceOf(address(basket)) >= tokensNeeded);                                                                                                                          │
+│         }                                                                                                                                                                                                       │
+│                                                                                                                                                                                                                 │
+│         basket.setNewWeights();                                                                                                                                                                                 │
+│         basket.updateIBRatio(newRatio);                                                                                                                                                                         │
+│         auctionOngoing = false;                                                                                                                                                                                 │
+│         hasBonded = false;                                                                                                                                                                                      │
+│                                                                                                                                                                                                                 │
+│         basketAsERC20.safeTransfer(msg.sender, bondAmount);                                                                                                                                                     │
+│         withdrawBounty(bountyIDs);                                                                                                                                                                              │
+│                                                                                                                                                                                                                 │
+│         emit AuctionSettled(msg.sender);                                                                                                                                                                        │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ No                                                                                                                                                                                                              │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function auctionBurn(uint256 amount) onlyAuction nonReentrant external override {                                                                                                                           │
+│         handleFees();                                                                                                                                                                                           │
+│         uint256 startSupply = totalSupply();                                                                                                                                                                    │
+│         _burn(msg.sender, amount);                                                                                                                                                                              │
+│                                                                                                                                                                                                                 │
+│         uint256 newIbRatio = ibRatio * startSupply / (startSupply - amount);                                                                                                                                    │
+│         ibRatio = newIbRatio;                                                                                                                                                                                   │
+│                                                                                                                                                                                                                 │
+│         emit NewIBRatio(newIbRatio);                                                                                                                                                                            │
+│         emit Burned(msg.sender, amount);                                                                                                                                                                        │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function handleFees() private {                                                                                                                                                                             │
+│         if (lastFee == 0) {                                                                                                                                                                                     │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│         } else {                                                                                                                                                                                                │
+│             uint256 startSupply = totalSupply();                                                                                                                                                                │
+│                                                                                                                                                                                                                 │
+│             uint256 timeDiff = (block.timestamp - lastFee);                                                                                                                                                     │
+│             uint256 feePct = timeDiff * licenseFee / ONE_YEAR;                                                                                                                                                  │
+│             uint256 fee = startSupply * feePct / (BASE - feePct);                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             _mint(publisher, fee * (BASE - factory.ownerSplit()) / BASE);                                                                                                                                       │
+│             _mint(Ownable(address(factory)).owner(), fee * factory.ownerSplit() / BASE);                                                                                                                        │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│                                                                                                                                                                                                                 │
+│             uint256 newIbRatio = ibRatio * startSupply / totalSupply();                                                                                                                                         │
+│             ibRatio = newIbRatio;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             emit NewIBRatio(ibRatio);                                                                                                                                                                           │
+│         }                                                                                                                                                                                                       │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function auctionBurn(uint256 amount) onlyAuction nonReentrant external override {                                                                                                                           │
+│         handleFees();                                                                                                                                                                                           │
+│         uint256 startSupply = totalSupply();                                                                                                                                                                    │
+│         _burn(msg.sender, amount);                                                                                                                                                                              │
+│                                                                                                                                                                                                                 │
+│         uint256 newIbRatio = ibRatio * startSupply / (startSupply - amount);                                                                                                                                    │
+│         ibRatio = newIbRatio;                                                                                                                                                                                   │
+│                                                                                                                                                                                                                 │
+│         emit NewIBRatio(newIbRatio);                                                                                                                                                                            │
+│         emit Burned(msg.sender, amount);                                                                                                                                                                        │
+│     }                                                                                                                                                                                                           │
+│     function handleFees() private {                                                                                                                                                                             │
+│         if (lastFee == 0) {                                                                                                                                                                                     │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│         } else {                                                                                                                                                                                                │
+│             uint256 startSupply = totalSupply();                                                                                                                                                                │
+│                                                                                                                                                                                                                 │
+│             uint256 timeDiff = (block.timestamp - lastFee);                                                                                                                                                     │
+│             uint256 feePct = timeDiff * licenseFee / ONE_YEAR;                                                                                                                                                  │
+│             uint256 fee = startSupply * feePct / (BASE - feePct);                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             _mint(publisher, fee * (BASE - factory.ownerSplit()) / BASE);                                                                                                                                       │
+│             _mint(Ownable(address(factory)).owner(), fee * factory.ownerSplit() / BASE);                                                                                                                        │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│                                                                                                                                                                                                                 │
+│             uint256 newIbRatio = ibRatio * startSupply / totalSupply();                                                                                                                                         │
+│             ibRatio = newIbRatio;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             emit NewIBRatio(ibRatio);                                                                                                                                                                           │
+│         }                                                                                                                                                                                                       │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function mintTo(uint256 amount, address to) public nonReentrant override {                                                                                                                                  │
+│         require(auction.auctionOngoing() == false);                                                                                                                                                             │
+│         require(amount > 0);                                                                                                                                                                                    │
+│                                                                                                                                                                                                                 │
+│         handleFees();                                                                                                                                                                                           │
+│                                                                                                                                                                                                                 │
+│         pullUnderlying(amount, msg.sender);                                                                                                                                                                     │
+│                                                                                                                                                                                                                 │
+│         _mint(to, amount);                                                                                                                                                                                      │
+│                                                                                                                                                                                                                 │
+│         emit Minted(to, amount);                                                                                                                                                                                │
+│     }                                                                                                                                                                                                           │
+│     function handleFees() private {                                                                                                                                                                             │
+│         if (lastFee == 0) {                                                                                                                                                                                     │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│         } else {                                                                                                                                                                                                │
+│             uint256 startSupply = totalSupply();                                                                                                                                                                │
+│                                                                                                                                                                                                                 │
+│             uint256 timeDiff = (block.timestamp - lastFee);                                                                                                                                                     │
+│             uint256 feePct = timeDiff * licenseFee / ONE_YEAR;                                                                                                                                                  │
+│             uint256 fee = startSupply * feePct / (BASE - feePct);                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             _mint(publisher, fee * (BASE - factory.ownerSplit()) / BASE);                                                                                                                                       │
+│             _mint(Ownable(address(factory)).owner(), fee * factory.ownerSplit() / BASE);                                                                                                                        │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│                                                                                                                                                                                                                 │
+│             uint256 newIbRatio = ibRatio * startSupply / totalSupply();                                                                                                                                         │
+│             ibRatio = newIbRatio;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             emit NewIBRatio(ibRatio);                                                                                                                                                                           │
+│         }                                                                                                                                                                                                       │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────── Multiple Choice Scenarios ───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Knowledge: have code statements that get or calculate LP token's value/price                                                                                                                                    │
+│ deposit/mint/add the liquidity pool/amount/share                                                                                                                                                                │
+│ Code:                                                                                                                                                                                                           │
+│     function burn(uint256 amount) public nonReentrant override {                                                                                                                                                │
+│         require(auction.auctionOngoing() == false);                                                                                                                                                             │
+│         require(amount > 0);                                                                                                                                                                                    │
+│                                                                                                                                                                                                                 │
+│         handleFees();                                                                                                                                                                                           │
+│                                                                                                                                                                                                                 │
+│         pushUnderlying(amount, msg.sender);                                                                                                                                                                     │
+│         _burn(msg.sender, amount);                                                                                                                                                                              │
+│                                                                                                                                                                                                                 │
+│         emit Burned(msg.sender, amount);                                                                                                                                                                        │
+│     }                                                                                                                                                                                                           │
+│     function handleFees() private {                                                                                                                                                                             │
+│         if (lastFee == 0) {                                                                                                                                                                                     │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│         } else {                                                                                                                                                                                                │
+│             uint256 startSupply = totalSupply();                                                                                                                                                                │
+│                                                                                                                                                                                                                 │
+│             uint256 timeDiff = (block.timestamp - lastFee);                                                                                                                                                     │
+│             uint256 feePct = timeDiff * licenseFee / ONE_YEAR;                                                                                                                                                  │
+│             uint256 fee = startSupply * feePct / (BASE - feePct);                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             _mint(publisher, fee * (BASE - factory.ownerSplit()) / BASE);                                                                                                                                       │
+│             _mint(Ownable(address(factory)).owner(), fee * factory.ownerSplit() / BASE);                                                                                                                        │
+│             lastFee = block.timestamp;                                                                                                                                                                          │
+│                                                                                                                                                                                                                 │
+│             uint256 newIbRatio = ibRatio * startSupply / totalSupply();                                                                                                                                         │
+│             ibRatio = newIbRatio;                                                                                                                                                                               │
+│                                                                                                                                                                                                                 │
+│             emit NewIBRatio(ibRatio);                                                                                                                                                                           │
+│         }                                                                                                                                                                                                       │
+│     }                                                                                                                                                                                                           │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────── Response ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ {                                                                                                                                                                                                               │
+│     "1": "No",                                                                                                                                                                                                  │
+│     "2": "No"                                                                                                                                                                                                   │
+│ }                                                                                                                                                                                                               │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                      Scan Results                       
+┏━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Type ┃ Description ┃ Affected Files ┃ Analysis Report ┃
+┡━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+└──────┴─────────────┴────────────────┴─────────────────┘
+                   Summary                   
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
+┃ Key                  ┃ Value              ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━┩
+│ Files                │ 6                  │
+│ Contracts            │ 6                  │
+│ Functions            │ 24                 │
+│ Lines of Code        │ 694                │
+│ Used Time            │ 17.853410959243774 │
+│ Estimated Cost (USD) │ 0.0050565          │
+└──────────────────────┴────────────────────┘
