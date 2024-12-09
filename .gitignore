@@ -6,6 +6,7 @@ project-config.json
 
 *eval_data*
 *datasets*
+*data*
 
 src/config.py
 src/sourcecode/*
